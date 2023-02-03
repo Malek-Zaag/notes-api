@@ -7,6 +7,8 @@ pipeline{
     stage("testing stage"){
       steps{
         script {    
+          sh "export PORT=3000"
+          sh "export DB_URI=mongodb+srv://admin:admin@cluster0.gkmmv.mongodb.net/notes-api?retryWrites=true&w=majority"
           sh "npm i"
           def testOutput = sh "npm run test"
           sh "echo ${testOutput}"
