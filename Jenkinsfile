@@ -9,15 +9,25 @@ pipeline{
         sh "docker build -t notes-api-docker-image ." 
         sh "docker images"
         echo "image built successfully"
-      }     
-      
+        script {    
+                    if (true) {
+                        stage ('Stage 1') {
+                            sh 'echo Stage 1'
+                        }
+                    }
+                    if (false) {
+                        stage ('Stage 2') {
+                            sh 'echo Stage 2'
+                        }
+                    }
+      }       
     }
-    stage("verify"){
-        steps{
-            sh "echo hello"
-            echo "verification"
-        }
-    }
+    // stage("verify"){
+    //     steps{
+    //         sh "echo hello"
+    //         echo "verification"
+    //     }
+    // }
     // stage("push image to ACR"){
     //   steps{
     //     echo "pushing to ACR stage"
@@ -30,4 +40,5 @@ pipeline{
     //   }
     // }
   }
+}
 }
