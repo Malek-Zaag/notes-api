@@ -4,12 +4,10 @@ pipeline{
 //     AZURE_REPO='myprivaterepo.azurecr.io'
 //   }
   stages{
-    stage("build image"){
-      steps{
-        sh "docker build -t notes-api-docker-image ." 
-        sh "docker images"
-        echo "image built successfully"
-        script {    
+    stage("testing stage"){
+      script {    
+          def testOutput = sh "npm run test"
+          sh "echo ${testOutput}"
                     if (true) {
                         stage ('Stage 1') {
                             sh 'echo Stage 1'
@@ -21,6 +19,13 @@ pipeline{
                         }
                     }
       }       
+    }
+    stage("build image"){
+      steps{
+        sh "docker build -t notes-api-docker-image ." 
+        sh "docker images"
+        echo "image built successfully"
+        
     }
     // stage("verify"){
     //     steps{
