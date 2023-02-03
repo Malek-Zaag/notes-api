@@ -6,7 +6,7 @@ pipeline{
   stages{
     stage("build image"){
       steps{
-        sh "docker build -t my_image ." 
+        sh "docker build -t my_image --file ./Dockerfile" 
         echo "image built successfully"
       }     
     }
