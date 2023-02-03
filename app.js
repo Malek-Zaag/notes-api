@@ -19,7 +19,6 @@ app.use(cors())
 app.use(bp.json())
 
 
-
 app.get("/notes", controller.getAllNotes)
 
 app.post("/addNote", controller.addNote)
