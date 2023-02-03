@@ -10,7 +10,7 @@ pipeline{
           sh "export PORT=3000"
           sh "export DB_URI=mongodb+srv://admin:admin@cluster0.gkmmv.mongodb.net/notes-api?retryWrites=true"
           sh "npm i"
-          sh "printenv | grep DB_URI"
+          sh "printenv"
           def testOutput = sh "npm run test"
           sh "echo ${testOutput}"
                     if (true) {
