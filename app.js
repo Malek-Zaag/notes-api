@@ -25,6 +25,8 @@ app.post("/addNote", controller.addNote)
 
 app.put("/updateNote", controller.updateNote)
 
+app.delete("/deleteNote", controller.deleteNote)
+
 app.listen(process.env.PORT, () => {
     console.log("hello server")
 })

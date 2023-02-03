@@ -44,3 +44,18 @@ module.exports.updateNote = async (req, res) => {
             res.send(err)
         })
 }
+
+
+module.exports.deleteNote = async (req, res) => {
+    const note = req.body
+    noteModel.findOneAndDelete({ title: note.title })
+        .then((response) => {
+            console.log(response)
+            res.json("note was deleted successfully")
+        })
+        .catch((err) => {
+            console.log(err)
+            res.send(err)
+        })
+
+}

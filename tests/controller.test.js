@@ -35,4 +35,14 @@ describe("testing routes", () => {
         expect(response.statusCode).toBe(200)
         expect(response.body).not.toBeNull()
     })
+
+    test("delete request to delete note", async () => {
+        const response = await request(app)
+            .delete("/deleteNote")
+            .send({
+                title: "todo1"
+            })
+        expect(response.statusCode).toBe(200)
+        expect(response.body).toContain("note was deleted successfully")
+    })
 })
