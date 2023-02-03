@@ -10,6 +10,7 @@ pipeline{
         sh "docker images"
         echo "image built successfully"
       }     
+      
     }
     stage("verify"){
         steps{
