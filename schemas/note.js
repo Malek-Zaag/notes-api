@@ -6,11 +6,12 @@ const mongoose = require("mongoose")
 const noteSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     date: {
         type: Date,
-        required: true
+        required: [true, "please enter a date"]
     },
     state: {
         type: String,

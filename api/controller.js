@@ -31,3 +31,16 @@ module.exports.addNote = async (req, res) => {
 }
 
 
+module.exports.updateNote = async (req, res) => {
+    const note = req.body
+    const title = note.title
+    noteModel.findOneAndUpdate({ title }, note)
+        .then((response) => {
+            console.log(response)
+            res.send(response)
+        })
+        .catch((err) => {
+            console.log(err)
+            res.send(err)
+        })
+}

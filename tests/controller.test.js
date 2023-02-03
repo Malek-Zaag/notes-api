@@ -23,4 +23,16 @@ describe("testing routes", () => {
         expect(response.statusCode).toBe(200)
         expect(response.body).not.toBeNull()
     })
+
+    test("update request to update note", async () => {
+        const response = await request(app)
+            .put("/updateNote")
+            .send({
+                title: "todo1",
+                dueDate: "2044444",
+                state: "done"
+            })
+        expect(response.statusCode).toBe(200)
+        expect(response.body).not.toBeNull()
+    })
 })

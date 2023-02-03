@@ -22,6 +22,9 @@ app.use(bp.json())
 app.get("/notes", controller.getAllNotes)
 
 app.post("/addNote", controller.addNote)
+
+app.put("/updateNote", controller.updateNote)
+
 app.listen(process.env.PORT, () => {
     console.log("hello server")
 })
