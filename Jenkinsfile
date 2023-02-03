@@ -10,6 +10,12 @@ pipeline{
         echo "image built successfully"
       }     
     }
+    stage("verify"){
+        steps{
+            sh "echo hello"
+            echo "verification"
+        }
+    }
     // stage("push image to ACR"){
     //   steps{
     //     echo "pushing to ACR stage"
