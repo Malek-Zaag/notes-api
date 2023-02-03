@@ -5,7 +5,8 @@ pipeline{
 //   }
   stages{
     stage("testing stage"){
-      script {    
+      steps{
+        script {    
           def testOutput = sh "npm run test"
           sh "echo ${testOutput}"
                     if (true) {
@@ -18,7 +19,9 @@ pipeline{
                             sh 'echo Stage 2'
                         }
                     }
-      }       
+        }    
+      }
+         
     }
     stage("build image"){
       steps{
