@@ -7,6 +7,7 @@ pipeline{
     stage("testing stage"){
       steps{
         script {    
+          sh "npm i"
           def testOutput = sh "npm run test"
           sh "echo ${testOutput}"
                     if (true) {
