@@ -1,14 +1,14 @@
 pipeline{
   agent any
-//   environment{
-//     AZURE_REPO='myprivaterepo.azurecr.io'
-//   }
+  environment{
+    // AZURE_REPO='myprivaterepo.azurecr.io'
+    PORT='3000'
+    DB_URI='mongodb+srv://admin:admin@cluster0.gkmmv.mongodb.net/notes-api?retryWrites=true&w=majority'
+  }
   stages{
     stage("testing stage"){
       steps{
         script {    
-          sh "export PORT=3000"
-          sh "export DB_URI=mongodb+srv://admin:admin@cluster0.gkmmv.mongodb.net/notes-api?retryWrites=true"
           sh "npm i"
           sh "printenv"
           def testOutput = sh "npm run test"
