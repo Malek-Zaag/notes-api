@@ -6,7 +6,7 @@ pipeline{
   stages{
     stage("build image"){
       steps{
-        sh "docker build -t my_image ." 
+        sh "docker build -t notes-api-docker-image ." 
         echo "image built successfully"
       }     
     }

@@ -25,3 +25,5 @@ app.post("/addNote", controller.addNote)
 app.listen(process.env.PORT, () => {
     console.log("hello server")
 })
+
+module.exports = app;
