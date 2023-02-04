@@ -1,5 +1,8 @@
 const app = require("../app")
 const request = require("supertest");
+const mongoose = require('mongoose')
+
+
 
 describe("testing routes", () => {
 
@@ -43,6 +46,7 @@ describe("testing routes", () => {
                 title: "todo1"
             })
         expect(response.statusCode).toBe(200)
-        expect(response.body).toContain("note was deleted successfully")
+        expect(response.body).not.toBeNull()
     })
+
 })

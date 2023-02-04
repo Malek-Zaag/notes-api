@@ -47,11 +47,11 @@ module.exports.updateNote = async (req, res) => {
 
 
 module.exports.deleteNote = async (req, res) => {
-    const note = req.body
-    noteModel.findOneAndDelete({ title: note.title })
+    const title = req.body.body
+    noteModel.findOneAndDelete({ title })
         .then((response) => {
             console.log(response)
-            res.json("note was deleted successfully")
+            res.send("note was deleted successfully")
         })
         .catch((err) => {
             console.log(err)
