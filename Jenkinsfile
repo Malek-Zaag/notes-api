@@ -1,21 +1,13 @@
 pipeline{
   agent any
   environment{
-    PORT=""
-    DB_URI=""
+    PORT=credentials("PORT")
+    DB_URI=credentials("DB_URI")
   }
   stages{
     stage("testing stage"){
       steps{
-        script {    
-           withCredentials([string(credentialsId: "DB_URI",variable: "DB_URI")]){
-            echo "My secret text is ${DB_URI}"
-            env.DB_URI=DB_URI
-          }
-          withCredentials([string(credentialsId: 'PORT', variable: 'PORT')]) { 
-            echo "My secret text is ${PORT}"
-            env.PORT=PORT
-          }        
+        script {                   
           sh "npm i"
           sh "printenv" 
           def testOutput = sh (script: "npm run test",returnStdout: true)
@@ -44,7 +36,14 @@ pipeline{
 }
 }
 
-
+//  withCredentials([string(credentialsId: "DB_URI",variable: "DB_URI")]){
+//             echo "My secret uri is ${DB_URI}"
+//             env.DB_URI=DB_URI
+//           }
+//           withCredentials([string(credentialsId: 'PORT', variable: 'PORT')]) { 
+//             echo "My secret port is ${PORT}"
+//             env.PORT=PORT
+//           }
 // stage("verify"){
     //     steps{
     //         sh "echo hello"
