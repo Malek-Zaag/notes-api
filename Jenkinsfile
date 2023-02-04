@@ -11,7 +11,7 @@ pipeline{
           sh "npm i"
           sh "printenv" 
           def testOutput = sh (script: "npm run test",returnStdout: true)
-          sh "echo '${testOutput}'"
+          sh "echo $testOutput"
             if (true) {
               stage ('Stage 1') {
                 sh 'echo Stage 1'
