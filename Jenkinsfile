@@ -1,31 +1,35 @@
 pipeline{
   agent any
   environment{
-    // AZURE_REPO='myprivaterepo.azurecr.io'
-    PORT='3000'
-    DB_URI='mongodb+srv://admin:admin@cluster0.gkmmv.mongodb.net/notes-api?retryWrites=true&w=majority'
+    withCredentials([string(credentialsId: "DB_URI",variable: "DB_URI")]){
+            echo "My secret text is '${DB_URI}'"
+            DB_URI=DB_URI
+          }
+    withCredentials([string(credentialsId: 'PORT', variable: 'PORT')]) { 
+            echo "My secret text is '${PORT}'"
+            PORT=PORT
+          }
   }
   stages{
     stage("testing stage"){
       steps{
         script {    
           sh "npm i"
-          sh "printenv"
-          def testOutput = sh "npm run test"
-          sh "echo ${testOutput}"
-                    if (true) {
-                        stage ('Stage 1') {
-                            sh 'echo Stage 1'
-                        }
-                    }
-                    if (false) {
-                        stage ('Stage 2') {
-                            sh 'echo Stage 2'
-                        }
-                    }
+          sh "printenv" 
+          def testOutput = sh (script: "npm run test",returnStdout: true)
+          sh "echo '${testOutput}'"
+            if (true) {
+              stage ('Stage 1') {
+                sh 'echo Stage 1'
+              }          
+            }       
+            if (false) {
+              stage ('Stage 2') {
+                sh 'echo Stage 2'
+              }                                    
+            }       
         }    
-      }
-         
+      } 
     }
     stage("build image"){
       steps{
@@ -34,7 +38,12 @@ pipeline{
         echo "image built successfully"
         
     }
-    // stage("verify"){
+  }
+}
+}
+
+
+// stage("verify"){
     //     steps{
     //         sh "echo hello"
     //         echo "verification"
@@ -51,6 +60,3 @@ pipeline{
     //     echo "image pushed successfully to azure container registry"
     //   }
     // }
-  }
-}
-}
