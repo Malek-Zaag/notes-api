@@ -11,7 +11,11 @@ pipeline{
           sh "npm i"
           sh "printenv" 
           sh "npm run test"
-          junit "junit.xml"
+          post {
+            always {
+              junit 'junit.xml'
+            }
+          }
             if (true) {
               stage ('Stage 1') {
                 sh 'echo Stage 1'
