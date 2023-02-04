@@ -6,27 +6,11 @@ pipeline{
   }
   stages{
     stage("testing stage"){
-      steps{
-        script {                   
+      steps{                
           sh "npm i"
           sh "printenv" 
           sh "npm run test"
-          post {
-            always {
-              junit 'junit.xml'
-            }
-          }
-            if (true) {
-              stage ('Stage 1') {
-                sh 'echo Stage 1'
-              }          
-            }       
-            if (false) {
-              stage ('Stage 2') {
-                sh 'echo Stage 2'
-              }                                    
-            }       
-        }    
+          junit 'junit.xml'
       } 
     }
     stage("build image"){
