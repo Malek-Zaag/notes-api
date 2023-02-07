@@ -23,29 +23,3 @@ pipeline{
   }
 }
 }
-
-//  withCredentials([string(credentialsId: "DB_URI",variable: "DB_URI")]){
-//             echo "My secret uri is ${DB_URI}"
-//             env.DB_URI=DB_URI
-//           }
-//           withCredentials([string(credentialsId: 'PORT', variable: 'PORT')]) { 
-//             echo "My secret port is ${PORT}"
-//             env.PORT=PORT
-//           }
-// stage("verify"){
-    //     steps{
-    //         sh "echo hello"
-    //         echo "verification"
-    //     }
-    // }
-    // stage("push image to ACR"){
-    //   steps{
-    //     echo "pushing to ACR stage"
-    //     withCredentials([usernamePassword(credentialsId: 'azure-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]){
-    //       sh "echo $PASS | docker login ${AZURE_REPO} --username $USER --password-stdin"
-    //       sh "nslookup myprivaterepo.azurecr.io"
-    //       sh "docker push myprivaterepo.azurecr.io/library-management-api"
-    //     }
-    //     echo "image pushed successfully to azure container registry"
-    //   }
-    // }

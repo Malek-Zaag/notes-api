@@ -10,10 +10,6 @@ require("dotenv").config()
 require("./config/config")
 require("./schemas/note")
 
-const corsOptions = {
-}
-
-
 
 app.use(cors())
 app.use(bp.json())
