@@ -25,7 +25,7 @@ app.put("/updateNote", controller.updateNote)
 
 app.delete("/deleteNote", controller.deleteNote)
 
-app.listen(process.env.PORT || 80, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("hello server")
 })
 
