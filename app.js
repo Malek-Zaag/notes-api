@@ -13,6 +13,9 @@ require("./schemas/note")
 app.use(cors())
 app.use(bp.json())
 
+app.get("/", (req, res) => {
+    res.json("The backend server is working !")
+})
 
 app.get("/notes", controller.getAllNotes)
 
