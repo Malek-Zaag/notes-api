@@ -46,5 +46,4 @@ resource "azurerm_app_service_source_control" "my-source-control" {
   repo_url               = "https://github.com/Malek-Zaag/notes-api"
   branch                 = "main"
   use_manual_integration = false
-
 }
