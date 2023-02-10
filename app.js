@@ -5,7 +5,6 @@ const bp = require("body-parser")
 const controller = require("./api/controller")
 
 
-
 require("dotenv").config()
 require("./config/config")
 require("./schemas/note")
@@ -23,7 +22,7 @@ app.put("/updateNote", controller.updateNote)
 
 app.delete("/deleteNote", controller.deleteNote)
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 80, () => {
     console.log("hello server")
 })
 
