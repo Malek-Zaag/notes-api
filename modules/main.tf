@@ -26,14 +26,7 @@ resource "azurerm_virtual_network" "notes-api-virtual-network" {
   resource_group_name = azurerm_resource_group.notes-api-azure-resource-group.name
 }
 
-resource "azurerm_subnet" "notes-api-subnet" {
-  name                 = "my-subnet"
-  resource_group_name  = azurerm_resource_group.notes-api-azure-resource-group.name
-  virtual_network_name = azurerm_virtual_network.notes-api-virtual-network.name
-  address_prefixes     = ["10.0.1.0/24"]
-}
-
-#public ip for azure loadbalancer
+# public ip for azure loadbalancer
 resource "azurerm_public_ip" "notes-api-public-ip" {
   name                = "my-public-ip"
   resource_group_name = azurerm_resource_group.notes-api-azure-resource-group.name
@@ -41,7 +34,7 @@ resource "azurerm_public_ip" "notes-api-public-ip" {
   allocation_method   = "Static"
 }
 
-#the loadbalancer itself
+# the loadbalancer itself
 resource "azurerm_lb" "notes-api-loadbalancer" {
   name                = "my-azure-loadbalancer"
   resource_group_name = azurerm_resource_group.notes-api-azure-resource-group.name
@@ -56,6 +49,32 @@ resource "azurerm_lb_backend_address_pool" "notes-api-lb-backend-address-pool" {
   loadbalancer_id = azurerm_lb.notes-api-loadbalancer.id
   name            = "BackEndAddressPool"
 }
+
+# for 1st vm
+resource "azurerm_lb_backend_address_pool_address" "notes-api-lb-backend-address-pool-address1" {
+  name                    = "BackEndAddressPoolAddress"
+  backend_address_pool_id = azurerm_lb_backend_address_pool.notes-api-lb-backend-address-pool.id
+  virtual_network_id      = azurerm_virtual_network.notes-api-virtual-network.id
+  ip_address              = "10.0.1.4"
+
+}
+
+# for 2nd vm
+resource "azurerm_lb_backend_address_pool_address" "notes-api-lb-backend-address-pool-address2" {
+  name                    = "BackEndAddressPoolAddress"
+  backend_address_pool_id = azurerm_lb_backend_address_pool.notes-api-lb-backend-address-pool.id
+  virtual_network_id      = azurerm_virtual_network.notes-api-virtual-network.id
+  ip_address              = "10.0.1.5"
+
+}
+
+resource "azurerm_subnet" "notes-api-subnet" {
+  name                 = "my-subnet"
+  resource_group_name  = azurerm_resource_group.notes-api-azure-resource-group.name
+  virtual_network_name = azurerm_virtual_network.notes-api-virtual-network.name
+  address_prefixes     = ["10.0.1.0/24"]
+}
+
 
 resource "azurerm_network_interface" "notes-api-network-interface" {
   count               = 2
