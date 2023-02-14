@@ -1,5 +1,4 @@
 # Architecture 
 
 
-[![arch](https://i.imgur.com/RoyFE5W.png]
-
+![arch](https://i.imgur.com/RoyFE5W.png)
